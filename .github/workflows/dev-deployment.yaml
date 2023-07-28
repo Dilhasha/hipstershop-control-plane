@@ -9,6 +9,7 @@ env:
   CLUSTER_NAME: hipstershop-cluster
   ZONE: us-central1-c
   PROJECT_ID: microrts-sample
+  NAMESPACE: hipstershop
 
 jobs:
   deploy:
@@ -45,54 +46,44 @@ jobs:
         run: |
           # cart service
           ./kustomize build ./cart-service | kubectl apply -f -
-          until kubectl get deployment cartservice; do sleep 1; done
-          kubectl rollout status deployment/cartservice
-          kubectl get services -o wide
 
       - name: Build and Deploy inventoryservice
         run: |
           # inventory service
           ./kustomize build ./inventory-service | kubectl apply -f -
-          until kubectl get deployment inventoryservice; do sleep 1; done
-          kubectl rollout status deployment/inventoryservice
-          kubectl get services -o wide
 
       - name: Build and Deploy orderservice
         run: |
           # order service
           ./kustomize build ./order-service | kubectl apply -f -
-          until kubectl get deployment orderservice; do sleep 1; done
-          kubectl rollout status deployment/orderservice
-          kubectl get services -o wide
 
       - name: Build and Deploy paymentservice
         run: |
           # payment service
           ./kustomize build ./payment-service | kubectl apply -f -
-          until kubectl get deployment paymentservice; do sleep 1; done
-          kubectl rollout status deployment/paymentservice
-          kubectl get services -o wide
 
       - name: Build and Deploy productservice
         run: |
           # product service
           ./kustomize build ./product-service | kubectl apply -f -
-          until kubectl get deployment productservice; do sleep 1; done
-          kubectl rollout status deployment/productservice
-          kubectl get services -o wide
 
       - name: Build and Deploy shippingservice
         run: |
           # shipping service
           ./kustomize build ./shipping-service | kubectl apply -f -
-          until kubectl get deployment shippingservice; do sleep 1; done
-          kubectl rollout status deployment/shippingservice
-          kubectl get services -o wide
 
       - name: Build and Deploy userservice
         run: |
           # user service
           ./kustomize build ./user-service | kubectl apply -f -
-          until kubectl get deployment userservice; do sleep 1; done
-          kubectl rollout status deployment/userservice
+
+      - name: Check deployment
+        run: |
+          kubectl rollout status deployment/cartservice -n $NAMESPACE
+          kubectl rollout status deployment/inventoryservice -n $NAMESPACE
+          kubectl rollout status deployment/paymentservice -n $NAMESPACE
+          kubectl rollout status deployment/productservice -n $NAMESPACE
+          kubectl rollout status deployment/orderservice -n $NAMESPACE
+          kubectl rollout status deployment/shippingservice -n $NAMESPACE
+          kubectl rollout status deployment/userservice -n $NAMESPACE
           kubectl get services -o wide
