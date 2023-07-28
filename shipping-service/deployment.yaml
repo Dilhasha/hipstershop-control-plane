@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shippingservice
+  labels:
+    app: shippingservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shippingservice
+  template:
+    metadata:
+      labels:
+        app: shippingservice
+    spec:
+      containers:
+        - name: shippingservice
+          image: gcr.io/microrts-sample/shippingservice:1.0.0
+          ports:
+            - containerPort: 9233
+
