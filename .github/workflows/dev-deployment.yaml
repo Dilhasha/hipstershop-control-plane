@@ -31,6 +31,6 @@ jobs:
       - name: Build and Deploy Microservices
         run: |
           # Replace the following with appropriate Kustomize commands for each microservice
-          kubectl kustomize ./cart-service | kubectl apply -f -
+          ./kustomize build ./cart-service | kubectl apply -f -
           kubectl rollout status deployment/cartservice
           kubectl get services -o wide
