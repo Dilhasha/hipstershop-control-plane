@@ -5,6 +5,11 @@ on:
     branches:
       - master
 
+env:
+  CLUSTER_NAME: hipstershop-cluster
+  ZONE: us-central1-a
+  PROJECT_ID: microrts-sample
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,12 +21,15 @@ jobs:
       - name: Set up Google Cloud SDK
         uses: google-github-actions/setup-gcloud@v0.5.0
         with:
-          project_id: microrts-sample
+          project_id: ${{ env.PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_SA_KEY }}
 
       - name: Configure Docker to use the gcloud command-line tool
         run: |
           gcloud auth configure-docker
+      - name: Get GKE credentials
+        run: |
+          gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
 
       - name: Set up Kustomize
         run: |-
