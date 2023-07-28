@@ -45,5 +45,6 @@ jobs:
         run: |
           # Replace the following with appropriate Kustomize commands for each microservice
           ./kustomize build ./cart-service | kubectl apply -f -
+          until kubectl get deployment cartservice; do sleep 1; done
           kubectl rollout status deployment/cartservice
           kubectl get services -o wide
