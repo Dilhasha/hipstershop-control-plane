@@ -86,8 +86,7 @@ jobs:
 
       - name: Deploy ingress controller
         run: |
-          # user service
-          ./kustomize build ./ingress | kubectl apply -f -
+          ./kustomize build ./ingress/overlays/dev | kubectl apply -f -
 
       - name: Check deployment
         run: |
