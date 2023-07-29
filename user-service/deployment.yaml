@@ -18,5 +18,5 @@ spec:
         - name: userservice
           image: gcr.io/microrts-sample/userservice:1.0.0
           ports:
-            - containerPort: 9233
+            - containerPort: 9231
 

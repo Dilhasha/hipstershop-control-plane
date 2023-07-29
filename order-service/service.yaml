@@ -7,6 +7,6 @@ spec:
     app: orderservice
   ports:
     - protocol: TCP
-      port: 9233
-      targetPort: 9233
+      port: 9234
+      targetPort: 9234
   type: LoadBalancer

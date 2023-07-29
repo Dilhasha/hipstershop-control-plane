@@ -18,5 +18,5 @@ spec:
         - name: productservice
           image: gcr.io/microrts-sample/productservice:1.0.0
           ports:
-            - containerPort: 9233
+            - containerPort: 9232
 

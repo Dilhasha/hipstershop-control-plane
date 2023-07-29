@@ -18,5 +18,5 @@ spec:
         - name: orderservice
           image: gcr.io/microrts-sample/orderservice:1.0.0
           ports:
-            - containerPort: 9233
+            - containerPort: 9234
 

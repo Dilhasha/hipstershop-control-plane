@@ -7,6 +7,6 @@ spec:
     app: paymentservice
   ports:
     - protocol: TCP
-      port: 9233
-      targetPort: 9233
+      port: 9235
+      targetPort: 9235
   type: LoadBalancer

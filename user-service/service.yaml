@@ -7,6 +7,6 @@ spec:
     app: userservice
   ports:
     - protocol: TCP
-      port: 9233
-      targetPort: 9233
+      port: 9231
+      targetPort: 9231
   type: LoadBalancer

@@ -7,6 +7,6 @@ spec:
     app: shippingservice
   ports:
     - protocol: TCP
-      port: 9233
-      targetPort: 9233
+      port: 9237
+      targetPort: 9237
   type: LoadBalancer
