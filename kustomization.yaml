@@ -2,5 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - ./microrts-api
   - ./cart-service
+  - ./inventory-service
+  - ./order-service
+  - ./payment-service
+  - ./product-service
+  - ./shipping-service
+  - ./user-service
 
