@@ -17,6 +17,7 @@ spec:
       containers:
         - name: orderservice
           image: gcr.io/microrts-sample/orderservice:1.0.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 9234
 
