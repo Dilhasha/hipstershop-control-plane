@@ -9,7 +9,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /microrts
+          - path: /configure
             pathType: Prefix
             backend:
               service:
