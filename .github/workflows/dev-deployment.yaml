@@ -9,7 +9,8 @@ env:
   CLUSTER_NAME: hipstershop-cluster
   ZONE: us-central1-c
   PROJECT_ID: microrts-sample
-  NAMESPACE: hipstershop
+  MICRORTS_NS: microrts
+  HIPSTERSHOP_NS: hipstershop
 
 jobs:
   deploy:
@@ -42,18 +43,22 @@ jobs:
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
 
-      - name: Build and Deploy all the services
+      - name: Build and Deploy the microrts api
         run: |
-          ./kustomize build ./ | kubectl apply -f -
+          ./kustomize build ./microrts-api | kubectl apply -f -
+
+      - name: Build and Deploy all the hisptershop services
+        run: |
+          ./kustomize build ./hipstershop | kubectl apply -f -
 
       - name: Check deployment
         run: |
-          kubectl rollout status deployment/micrortsapi -n $NAMESPACE
-          kubectl rollout status deployment/cartservice -n $NAMESPACE
-          kubectl rollout status deployment/inventoryservice -n $NAMESPACE
-          kubectl rollout status deployment/paymentservice -n $NAMESPACE
-          kubectl rollout status deployment/productservice -n $NAMESPACE
-          kubectl rollout status deployment/orderservice -n $NAMESPACE
-          kubectl rollout status deployment/shippingservice -n $NAMESPACE
-          kubectl rollout status deployment/userservice -n $NAMESPACE
+          kubectl rollout status deployment/micrortsapi -n $MICRORTS_NS
+          kubectl rollout status deployment/cartservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/inventoryservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/paymentservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/productservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/orderservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/shippingservice -n $HIPSTERSHOP_NS
+          kubectl rollout status deployment/userservice -n $HIPSTERSHOP_NS
           kubectl get services -o wide
