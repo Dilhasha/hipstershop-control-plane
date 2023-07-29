@@ -3,6 +3,8 @@ kind: Kustomization
 
 resources:
   - microrts-route-svc.yaml
+
+patchesStrategicMerge:
   - microrts-api-ingress.yaml
 
 namespace: ingress-nginx
