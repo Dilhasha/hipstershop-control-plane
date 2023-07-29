@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - microts-route-svc.yaml
   - microrts-api-ingress.yaml
 
 namespace: ingress-nginx
