@@ -9,4 +9,3 @@ spec:
     - protocol: TCP
       port: 9233
       targetPort: 9233
-  type: LoadBalancer

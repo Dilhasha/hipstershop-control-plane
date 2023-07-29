@@ -9,4 +9,4 @@ spec:
     - protocol: TCP
       port: 9234
       targetPort: 9234
-  type: LoadBalancer
+
