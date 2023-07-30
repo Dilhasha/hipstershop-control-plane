@@ -1,0 +1,60 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hipstershop-ingress
+  namespace: hipstershop
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /cartservice
+            pathType: Prefix
+            backend:
+              service:
+                name: cartservice-svc
+                port:
+                  number: 8080
+          - path: /inventoryservice
+            pathType: Prefix
+            backend:
+              service:
+                name: inventoryservice-svc
+                port:
+                  number: 8080
+          - path: /shippingservice
+            pathType: Prefix
+            backend:
+              service:
+                name: shippingservice-svc
+                port:
+                  number:
+          - path: /productservice
+            pathType: Prefix
+            backend:
+              service:
+                name: productservice-svc
+                port:
+                  number: 8080
+          - path: /paymentservice
+            pathType: Prefix
+            backend:
+              service:
+                name: paymentservice-svc
+                port:
+                  number: 8080
+          - path: /userservice
+            pathType: Prefix
+            backend:
+              service:
+                name: userservice-svc
+                port:
+                  number: 8080
+          - path: /orderservice
+            pathType: Prefix
+            backend:
+              service:
+                name: orderservice-svc
+                port:
+                  number: 8080

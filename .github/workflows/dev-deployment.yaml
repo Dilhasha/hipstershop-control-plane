@@ -10,7 +10,6 @@ env:
   ZONE: us-central1-c
   PROJECT_ID: microrts-sample
   NAMESPACE: hipstershop
-  RTS_NAMESPACE: microrts
 
 jobs:
   deploy:
@@ -42,11 +41,6 @@ jobs:
         run: |-
           curl -sfLo kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
           chmod u+x ./kustomize
-
-      - name: Build and Deploy microrts-api
-        run: |
-          # cart service
-          ./kustomize build ./microrts-api | kubectl apply -f -
 
       - name: Build and Deploy cartservice
         run: |
@@ -90,7 +84,6 @@ jobs:
 
       - name: Check deployment
         run: |
-          kubectl rollout status deployment/micrortsapi -n $RTS_NAMESPACE
           kubectl rollout status deployment/cartservice -n $NAMESPACE
           kubectl rollout status deployment/inventoryservice -n $NAMESPACE
           kubectl rollout status deployment/paymentservice -n $NAMESPACE
