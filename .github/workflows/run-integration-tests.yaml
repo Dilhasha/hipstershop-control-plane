@@ -16,12 +16,15 @@ env:
   SOURCE_PR_NUMBER: ${{ inputs.pr_number }}
 
 jobs:
-  send-curl:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
+      - name: Run selected tests CURL Request
+        run:
+          time curl "http://199.223.232.45:8080/test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH"
       - name: Send CURL Request
         run:
-          time curl "http://199.223.232.45:8080/test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH&paths=IntegrationTestsSuite"
+          time curl "http://199.223.232.45:8080/selected-test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH&paths=IntegrationTestsSuite"
 
 
 
