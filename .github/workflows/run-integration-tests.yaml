@@ -1,20 +1,27 @@
 name: Run Tests
 
-inputs:
-  repository:
-    description: 'GitHub repository'
-    required: true
-  pr_number:
-    description: 'Pull Request number'
-    required: true
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'GitHub repository'
+        required: true
+      pr_number:
+        description: 'Pull Request number'
+        required: true
+
 
 env:
   SOURCE_BRANCH: ${{ inputs.repository }}
   SOURCE_PR_NUMBER: ${{ inputs.pr_number }}
 
-runs:
-  using: 'composite'
-  steps:
-    - run: |
-        time curl "http://199.223.232.45:8080/test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH&paths=IntegrationTestsSuite"
-      shell: bash
+jobs:
+  send-curl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send CURL Request
+        run:
+          time curl "http://199.223.232.45:8080/test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH&paths=IntegrationTestsSuite"
+
+
+
