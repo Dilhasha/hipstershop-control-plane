@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-service
+  labels:
+    app: jaeger
+spec:
+  ports:
+    - name: admin-port
+      port: 13133
+      targetPort: 13133
+    - name: ui-port
+      port: 16686
+      targetPort: 16686
+    - name: otel-port
+      port: 4317
+      targetPort: 55680
+  selector:
+    app: jaeger

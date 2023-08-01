@@ -1,15 +1,20 @@
-name: Deploy to GKE
+name: Deploy to GKE and Run Tests
 
-on:
-  push:
-    branches:
-      - master
+inputs:
+  repository:
+    description: 'GitHub repository'
+    required: true
+  pr_number:
+    description: 'Pull Request number'
+    required: true
 
 env:
   CLUSTER_NAME: hipstershop-cluster
   ZONE: us-central1-c
   PROJECT_ID: microrts-sample
   NAMESPACE: hipstershop
+  SOURCE_BRANCH: ${{ inputs.repository }}
+  SOURCE_PR_NUMBER: ${{ inputs.pr_number }}
 
 jobs:
   deploy:
@@ -92,3 +97,11 @@ jobs:
           kubectl rollout status deployment/shippingservice -n $NAMESPACE
           kubectl rollout status deployment/userservice -n $NAMESPACE
           kubectl get services -o wide
+
+      - name: Send POST request to run selected tests
+        run: |
+          time curl "http://199.223.232.45:8080/selected-test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH"
+
+      - name: Send POST request to run all the tests
+        run: |
+          time curl "http://199.223.232.45:8080/test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH&paths=IntegrationTestsSuite"
