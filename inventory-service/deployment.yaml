@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: inventoryservice
-          image: gcr.io/microrts-sample/inventoryservice:1.0.4
+          image: gcr.io/microrts-sample/inventoryservice:1.0.5
           imagePullPolicy: Always
           ports:
             - containerPort: 9236
