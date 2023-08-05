@@ -92,9 +92,3 @@ jobs:
           kubectl rollout status deployment/shippingservice -n $NAMESPACE
           kubectl rollout status deployment/userservice -n $NAMESPACE
           kubectl get services -o wide
-  run-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run selected tests
-        run:
-          time curl "http://199.223.232.45:8080/selected-test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH"
