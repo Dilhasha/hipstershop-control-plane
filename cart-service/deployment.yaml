@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cartservice
-          image: gcr.io/microrts-sample/cartservice:1.0.7
+          image: gcr.io/microrts-sample/cartservice:1.0.8
           imagePullPolicy: Always
           ports:
             - containerPort: 9233
