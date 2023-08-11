@@ -1,0 +1,27 @@
+name: Run Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      repository:
+        description: 'GitHub repository'
+        required: true
+      pr_number:
+        description: 'Pull Request number'
+        required: true
+
+
+env:
+  SOURCE_BRANCH: ${{ inputs.repository }}
+  SOURCE_PR_NUMBER: ${{ inputs.pr_number }}
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run selected tests
+        run:
+          time curl "http://199.223.232.45:8080/selected-test-results?pr=$SOURCE_PR_NUMBER&repoName=$SOURCE_BRANCH"
+
+
+
