@@ -1,4 +1,4 @@
-name: Run Tests
+name: Run Selected Integration Tests
 
 on:
   workflow_dispatch:
