@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: shippingservice
-          image: gcr.io/microrts-sample/shippingservice:1.0.9
+          image: gcr.io/microrts-sample/shippingservice:1.1.0
           imagePullPolicy: Always
           ports:
             - containerPort: 9237
