@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: userservice
-          image: gcr.io/microrts-sample/userservice:1.1.2
+          image: gcr.io/microrts-sample/userservice:1.1.3
           imagePullPolicy: Always
           ports:
             - containerPort: 9231
