@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: paymentservice
-          image: gcr.io/microrts-sample/paymentservice:1.1.3
+          image: gcr.io/microrts-sample/paymentservice:1.1.4
           imagePullPolicy: Always
           ports:
             - containerPort: 9235
