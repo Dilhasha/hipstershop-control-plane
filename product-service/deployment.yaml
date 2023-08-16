@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: productservice
-          image: gcr.io/microrts-sample/productservice:1.1.6
+          image: gcr.io/microrts-sample/productservice:1.1.7
           imagePullPolicy: Always
           ports:
             - containerPort: 9232
